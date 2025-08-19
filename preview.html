@@ -1,0 +1,273 @@
+import React, { useState } from 'react';
+
+// Main App component
+export default function App() {
+  const [step, setStep] = useState(1);
+  const [loading, setLoading] = useState(false);
+
+  // Function to handle moving to the next step
+  const nextStep = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setStep(prevStep => prevStep + 1);
+    }, 1500); // Simulate a network or processing delay
+  };
+
+  // Render the current step based on the state
+  const renderStep = () => {
+    switch (step) {
+      case 1:
+        return <EntryLayer nextStep={nextStep} loading={loading} />;
+      case 2:
+        return <AIIntegration nextStep={nextStep} loading={loading} />;
+      case 3:
+        return <DigitalPassport nextStep={nextStep} loading={loading} />;
+      case 4:
+        return <SoulBaseAI nextStep={nextStep} />;
+      case 5:
+        return <SecurityProtection nextStep={nextStep} />;
+      case 6:
+        return <MonetizationPathways nextStep={nextStep} />;
+      case 7:
+        return <FinancialLayer nextStep={nextStep} />;
+      case 8:
+        return <RecursiveFlow />;
+      default:
+        return <EntryLayer nextStep={nextStep} loading={loading} />;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-slate-900 text-slate-100 p-4 font-sans flex flex-col items-center justify-center">
+      <div className="bg-slate-800 p-8 rounded-xl shadow-2xl max-w-lg w-full">
+        <h1 className="text-3xl font-bold text-center text-emerald-400 mb-6 drop-shadow-lg">iAscendAiⓈ</h1>
+        {renderStep()}
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------------------------------
+// Component for Step 1: Entry Layer
+// ---------------------------------------------------------------------------------------------------
+const EntryLayer = ({ nextStep, loading }) => {
+  return (
+    <>
+      <h2 className="text-xl font-semibold text-center mb-4">1. Entry Layer — The Gatekeeper</h2>
+      <p className="text-center mb-6 text-slate-400">
+        Simulating app download and V² verification. Your presence is your password.
+      </p>
+      <div className="flex flex-col space-y-4">
+        <input
+          type="text"
+          placeholder="Create username"
+          className="w-full p-3 bg-slate-700 text-slate-200 rounded-lg placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition-all"
+        />
+        <button
+          onClick={nextStep}
+          disabled={loading}
+          className={`w-full p-3 font-semibold rounded-lg transition-all transform hover:scale-105 ${
+            loading ? 'bg-emerald-700 cursor-not-allowed' : 'bg-emerald-500 hover:bg-emerald-600'
+          }`}
+        >
+          {loading ? 'Verifying...' : 'V² Verification'}
+        </button>
+      </div>
+      {loading && (
+        <div className="mt-4 text-center text-emerald-400 animate-pulse">
+          <p>Processing VIBEⓈ Access Protocol...</p>
+        </div>
+      )}
+    </>
+  );
+};
+
+// ---------------------------------------------------------------------------------------------------
+// Component for Step 2: AI Integration
+// ---------------------------------------------------------------------------------------------------
+const AIIntegration = ({ nextStep, loading }) => {
+  return (
+    <>
+      <h2 className="text-xl font-semibold text-center mb-4">2. AI Integration — Biometric Identity</h2>
+      <p className="text-center mb-6 text-slate-400">
+        TRUFiT Mind Mastery AI captures biometrics to create your unique “SoulPrint” identity.
+      </p>
+      <button
+        onClick={nextStep}
+        disabled={loading}
+        className={`w-full p-3 font-semibold rounded-lg transition-all transform hover:scale-105 ${
+          loading ? 'bg-sky-700 cursor-not-allowed' : 'bg-sky-500 hover:bg-sky-600'
+        }`}
+      >
+        {loading ? 'Capturing Biometrics...' : 'Start TRUFiT Mind Mastery'}
+      </button>
+      {loading && (
+        <div className="mt-4 text-center text-sky-400 animate-pulse">
+          <p>Analyzing movement, voice, and breath...</p>
+        </div>
+      )}
+    </>
+  );
+};
+
+// ---------------------------------------------------------------------------------------------------
+// Component for Step 3: Digital Passport
+// ---------------------------------------------------------------------------------------------------
+const DigitalPassport = ({ nextStep, loading }) => {
+  const [profile] = useState({
+    username: 'Adrian TRUFiT McKenzie',
+    soulPrintId: 'SOUL-PRNT-A1B2C3D4E5',
+    status: 'Authentic Frequency Verified',
+  });
+
+  return (
+    <>
+      <h2 className="text-xl font-semibold text-center mb-4">3. Digital PassportⓈ</h2>
+      <p className="text-center mb-6 text-slate-400">
+        Your digital identity is now synthesized.
+      </p>
+      <div className="bg-slate-700 p-6 rounded-lg mb-6 shadow-inner">
+        <div className="flex items-center space-x-4 mb-4">
+          <div className="w-12 h-12 bg-slate-600 rounded-full flex items-center justify-center text-2xl">
+            👤
+          </div>
+          <div>
+            <p className="font-semibold text-emerald-400">{profile.username}</p>
+            <p className="text-sm text-slate-400">{profile.soulPrintId}</p>
+          </div>
+        </div>
+        <p className="font-bold text-lg text-center mb-2">{profile.status}</p>
+        <p className="text-sm text-center text-slate-400">
+          Expands over time as you engage with the ecosystem.
+        </p>
+      </div>
+      <button
+        onClick={nextStep}
+        disabled={loading}
+        className={`w-full p-3 font-semibold rounded-lg transition-all transform hover:scale-105 ${
+          loading ? 'bg-purple-700 cursor-not-allowed' : 'bg-purple-500 hover:bg-purple-600'
+        }`}
+      >
+        Continue to SoulBase
+      </button>
+    </>
+  );
+};
+
+// ---------------------------------------------------------------------------------------------------
+// Component for Step 4: SoulBase AI
+// ---------------------------------------------------------------------------------------------------
+const SoulBaseAI = ({ nextStep }) => (
+  <>
+    <h2 className="text-xl font-semibold text-center mb-4">4. SoulBase AI — Your Digital DNA</h2>
+    <p className="text-center mb-6 text-slate-400">
+      This is the living archive of your authentic frequency, ensuring continuity across platforms, LLMs, and AI systems.
+    </p>
+    <ul className="list-disc list-inside text-slate-300 space-y-2 mb-6">
+      <li>Houses emotional, cognitive, and biometric authorship records.</li>
+      <li>SOUL = *System Operating Using Language*.</li>
+    </ul>
+    <button onClick={nextStep} className="w-full p-3 font-semibold bg-indigo-500 hover:bg-indigo-600 rounded-lg transition-all transform hover:scale-105">
+      Proceed to Security
+    </button>
+  </>
+);
+
+// ---------------------------------------------------------------------------------------------------
+// Component for Step 5: Security & Protection
+// ---------------------------------------------------------------------------------------------------
+const SecurityProtection = ({ nextStep }) => (
+  <>
+    <h2 className="text-xl font-semibold text-center mb-4">5. Security & Protection</h2>
+    <p className="text-center mb-6 text-slate-400">
+      Your identity and creations are safeguarded.
+    </p>
+    <ul className="list-disc list-inside text-slate-300 space-y-2 mb-6">
+      <li><strong>DIS²:</strong> Digital Immune Security System protects against intrusion.</li>
+      <li><strong>AI TracksⓈ:</strong> Monitors SoulMarked creations to detect theft.</li>
+      <li><strong>SoulMarkⓈ Registry:</strong> Immutable authorship record.</li>
+      <li><strong>RAID²:</strong> Ensures brand consistency and identifies counterfeits.</li>
+    </ul>
+    <button onClick={nextStep} className="w-full p-3 font-semibold bg-rose-500 hover:bg-rose-600 rounded-lg transition-all transform hover:scale-105">
+      Explore Monetization
+    </button>
+  </>
+);
+
+// ---------------------------------------------------------------------------------------------------
+// Component for Step 6: Monetization Pathways
+// ---------------------------------------------------------------------------------------------------
+const MonetizationPathways = ({ nextStep }) => (
+  <>
+    <h2 className="text-xl font-semibold text-center mb-4">6. Monetization Pathways</h2>
+    <p className="text-center mb-6 text-slate-400">
+      Verified creations become eligible for licensing, NIL agreements, and brand deals.
+    </p>
+    <ul className="list-disc list-inside text-slate-300 space-y-2 mb-6">
+      <li><strong>Smart Royalty Contracts:</strong> Instant, automated payouts.</li>
+    </ul>
+    <button onClick={nextStep} className="w-full p-3 font-semibold bg-teal-500 hover:bg-teal-600 rounded-lg transition-all transform hover:scale-105">
+      Go to Financial Layer
+    </button>
+  </>
+);
+
+// ---------------------------------------------------------------------------------------------------
+// Component for Step 7: Financial Layer
+// ---------------------------------------------------------------------------------------------------
+const FinancialLayer = ({ nextStep }) => (
+  <>
+    <h2 className="text-xl font-semibold text-center mb-4">7. Financial Layer</h2>
+    <p className="text-center mb-6 text-slate-400">
+      Safeguarding your financial identity and intent.
+    </p>
+    <ul className="list-disc list-inside text-slate-300 space-y-2 mb-6">
+      <li><strong>FinTechion AI:</strong> Guards your financial identity before money moves.</li>
+      <li><strong>PAI-SAFEⓈ Wallet:</strong> Biometric-accessed funds.</li>
+      <li><strong>SoulBankⓈ:</strong> Escrow and financial hub.</li>
+      <li><strong>TRUFiT Digital LockboxⓈ:</strong> A biometric-only vault for your assets.</li>
+    </ul>
+    <button onClick={nextStep} className="w-full p-3 font-semibold bg-yellow-500 hover:bg-yellow-600 rounded-lg transition-all transform hover:scale-105">
+      View Flow Summary
+    </button>
+  </>
+);
+
+// ---------------------------------------------------------------------------------------------------
+// Component for Step 8: Recursive Flow Summary
+// ---------------------------------------------------------------------------------------------------
+const RecursiveFlow = () => (
+  <>
+    <h2 className="text-xl font-semibold text-center mb-4">8. Recursive Flow</h2>
+    <p className="text-center mb-6 text-slate-400">
+      A summary of the core loop.
+    </p>
+    <div className="space-y-4">
+      <div className="bg-slate-700 p-4 rounded-lg">
+        <p className="font-semibold text-emerald-400">Verification</p>
+        <p className="text-slate-400 text-sm">V² + VIBEⓈ Access</p>
+      </div>
+      <div className="bg-slate-700 p-4 rounded-lg">
+        <p className="font-semibold text-sky-400">Embodiment</p>
+        <p className="text-slate-400 text-sm">TRUFiT Biometrics + AI Wellness 360</p>
+      </div>
+      <div className="bg-slate-700 p-4 rounded-lg">
+        <p className="font-semibold text-purple-400">Credentials</p>
+        <p className="text-slate-400 text-sm">Digital PassportⓈ + SoulMarkⓈ</p>
+      </div>
+      <div className="bg-slate-700 p-4 rounded-lg">
+        <p className="font-semibold text-rose-400">Protection</p>
+        <p className="text-slate-400 text-sm">DIS² + Registry + AI Tracks + RAID²</p>
+      </div>
+      <div className="bg-slate-700 p-4 rounded-lg">
+        <p className="font-semibold text-teal-400">Monetization</p>
+        <p className="text-slate-400 text-sm">Smart Contracts + PAI-SAFEⓈ + SoulBankⓈ</p>
+      </div>
+      <div className="bg-slate-700 p-4 rounded-lg">
+        <p className="font-semibold text-yellow-400">Security</p>
+        <p className="text-slate-400 text-sm">Lockbox preserves assets, DIS² shields all</p>
+      </div>
+    </div>
+  </>
+);
